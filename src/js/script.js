@@ -1,5 +1,4 @@
 {
-
   'use strict';
 
   const select = {
@@ -7,36 +6,56 @@
       bookList: '#template-book',
     },
     containerOf: {
-      list: '#books-list', // .books-list
+      list: 'books-list',
     },
   };
 
-  function render() {
+  const templates = {
+    bookList: Handlebars.compile(document.querySelector(select.templateOf.bookList).innerHTML),
+  };
 
-    const thisBookList = this;
 
-    for(let book of dataSource){
+  class BookList {
 
-      const templates = {
-        bookList: Handlebars.compile(document.querySelector(select.templateOf.bookList).innerHTML),
-      };
+    constructor(id, data) {
 
-      /* [DONE] generate HTML based on template */
+      const thisBookList = this;
 
-      const generatedHTML = templates.bookList(book);
+      thisBookList.id = id;
+      thisBookList.data = data;
 
-      /* [DONE] create element using utils.createElementFromHTML */
+      thisBookList.render();
+    }
 
-      thisBookList.element = utils.createDOMFromHTML(generatedHTML);
+    render() {
+      const thisBookList = this;
+      thisBookList.data = dataSource.books;
 
-      /* [DONE] find list container */
+      for(const book of this.data) {
+        const thisBookList = this;
 
-      const listContainer = document.querySelector(select.containerOf.list);
+        console.log('this.data:', this.data);
 
-      /* [DONE] add element to list */
+        /* [DONE] generate HTML based on template */
 
-      listContainer.appendChild(thisBookList.element);
+        const generatedHTML = templates.bookList(book);
+        //console.log('generatedHTML:', generatedHTML);
+
+        /* [DONE] create element using utils.createElementFromHTML */
+
+        thisBookList.element = utils.createDOMFromHTML(generatedHTML);
+        //console.log('thisBookList.element:', thisBookList.element);
+
+        /* [DONE] find list container */
+
+        const listContainer = document.querySelector(select.containerOf.list);
+        console.log('listContainer:', listContainer);
+
+        /* [DONE] add element to list */
+
+        listContainer.appendChild(thisBookList.element);
+      }
     }
   }
-  render();
+  new BookList();
 }
