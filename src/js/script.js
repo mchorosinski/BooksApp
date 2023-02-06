@@ -6,7 +6,7 @@
       bookList: '#template-book',
     },
     containerOf: {
-      list: 'books-list',
+      list: '.books-list', // "." kropka to dziecko
     },
   };
 
@@ -23,6 +23,8 @@
 
       thisBookList.id = id;
       thisBookList.data = data;
+      //console.log('id:', id);
+      //console.log('data:', data);
 
       thisBookList.render();
     }
@@ -31,7 +33,7 @@
       const thisBookList = this;
       thisBookList.data = dataSource.books;
 
-      for(const book of this.data) {
+      for(const book of thisBookList.data) {
         const thisBookList = this;
 
         console.log('this.data:', this.data);
