@@ -39,13 +39,13 @@
       //console.log('id:', id);
       //console.log('data:', data);
 
-      thisBookList.render();
+      thisBookList.initData();
       thisBookList.initActions();
       thisBookList.filterBooks();
       thisBookList.determineRatingBgc();
     }
 
-    render() {
+    initData() {
       const thisBookList = this;
       thisBookList.data = dataSource.books;
 
@@ -58,7 +58,7 @@
         const ratingWidth = book.rating * 10;
         console.log('ratingWidth:', ratingWidth);
 
-        console.log('thisBookList.data:', thisBookList.data);
+        //console.log('thisBookList.data:', thisBookList.data);
 
         /* [DONE] generate HTML based on template */
 
@@ -94,7 +94,7 @@
 
       listContainer.addEventListener('dblclick', function (event) {
         event.preventDefault();
-        console.log(this);
+        //console.log(this);
 
         /* variable of the clicked element */
 
@@ -178,7 +178,7 @@
         } else {
           const bookCover = document.querySelector('[data-id="' + book.id + '"]');
           bookCover.classList.remove(className.hidden);
-          console.log('bookCover:', bookCover);
+          //console.log('bookCover:', bookCover);
         }
       }
     }
